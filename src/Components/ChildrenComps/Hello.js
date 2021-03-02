@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
 import PrimaryButton, { SecondaryButton, TertiaryButton } from "../Buttons";
+import { defaultTheme, darkTheme } from "../../utils";
 
 function Hello() {
+  const [useDarkTheme, setDarkTheme] = useState(false);
   return (
-    <div>
-      <PrimaryButton modifiers="small">Submit</PrimaryButton>
-      <SecondaryButton>Submit</SecondaryButton>
-      <TertiaryButton>Submit</TertiaryButton>
-    </div>
+    <ThemeProvider theme={useDarkTheme ? darkTheme : defaultTheme}>
+      <button
+        onClick={() => {
+          setDarkTheme(!useDarkTheme);
+        }}
+      >
+        Click
+      </button>
+      <div
+        style={{
+          backgroundColor: useDarkTheme
+            ? defaultTheme.primaryColor
+            : darkTheme.primaryColor,
+          width: "100vW",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          transition: "all 1s ease-in-out 0s",
+        }}
+      >
+        <PrimaryButton>Submit</PrimaryButton>
+        <SecondaryButton>Submit</SecondaryButton>
+        <TertiaryButton>Submit</TertiaryButton>
+      </div>
+    </ThemeProvider>
   );
 }
 

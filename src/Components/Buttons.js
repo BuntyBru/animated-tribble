@@ -1,16 +1,32 @@
 import styled from "styled-components";
-import { defaultTheme, typeScale } from "../utils";
+import { typeScale } from "../utils";
 import { applyStyleModifiers } from "styled-components-modifiers";
 
 const BUTTON_MODIFIERS = {
-  small: () => `
+  small: ({ props }) => `
     font-size:${typeScale.helperText};
-    padding:8px
+    padding:8px;
     `,
 
-  large: () => `
-  font-size:${typeScale.h5},
+  large: ({ props }) => `
+  font-size:${typeScale.h5};
   padding:16px 24px;
+  `,
+
+  warning: ({ props }) => `
+  background-color:${(props) => props.theme.status.warningColor};
+  color:${(props) => props.theme.textColorInverted};
+
+  &:hover ,&:focus{
+
+    background-color:${(props) => props.theme.status.warningColor};
+    outline:3px solid ${(props) => props.theme.status.warningColorHover};
+  }
+
+  &:active
+  {
+    background-color:${(props) => props.theme.status.warningColorActive};
+  }
   `,
 };
 
@@ -23,40 +39,40 @@ const Button = styled.button`
   transition: background-color 0.2s linear, color 0.2s linear;
 
   &:hover {
-    background-color: ${defaultTheme.primaryColorHover};
-    color: ${defaultTheme.textColorOnPrimary};
+    background-color: ${(props) => props.theme.primaryColorHover};
+    color: ${(props) => props.theme.textColorOnPrimary};
   }
 
   &:focus {
-    outline: 3px solid ${defaultTheme.primaryColorHover};
+    outline: 3px solid ${(props) => props.theme.primaryColorHover};
   }
 
   &:active {
-    background-color: ${defaultTheme.primaryColorActive};
-    border-color: ${defaultTheme.primaryColorActive};
-    color: ${defaultTheme.textColorOnPrimary};
+    background-color: ${(props) => props.theme.primaryColorActive};
+    border-color: ${(props) => props.theme.primaryColorActive};
+    color: ${(props) => props.theme.textColorOnPrimary};
   }
 
   &:disabled {
-    background: ${defaultTheme.disabled};
-    color: ${defaultTheme.textOnDisabled};
+    background: ${(props) => props.theme.disabled};
+    color: ${(props) => props.theme.textOnDisabled};
     cursor: not-allowed;
     border: none;
   }
 `;
 
 const PrimaryButton = styled(Button)`
-  background-color: ${defaultTheme.primaryColor};
+  background-color: ${(props) => props.theme.primaryColor};
   border: none;
   font-size: ${typeScale.paragraph};
-  color: white;
+  color: ${(props) => props.theme.textColorOnPrimary};
   ${applyStyleModifiers(BUTTON_MODIFIERS)};
 `;
 
 export const SecondaryButton = styled(Button)`
   background: none;
-  border: 2px solid ${defaultTheme.primaryColor};
-  color: ${defaultTheme.primaryColor};
+  border: 2px solid ${(props) => props.theme.primaryColor};
+  color: ${(props) => props.theme.primaryColor};
 `;
 
 export const TertiaryButton = styled(SecondaryButton)`
