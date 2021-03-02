@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-const PrimaryBlue = "#0066ff9c";
+import { defaultTheme, typeScale } from "../utils";
 
 const Button = styled.button`
   min-width: 100px;
@@ -11,16 +10,16 @@ const Button = styled.button`
 `;
 
 const PrimaryButton = styled(Button)`
-  background-color: ${PrimaryBlue};
+  background-color: ${defaultTheme.primaryColor};
   border: none;
-  font-size: 1rem;
+  font-size: ${typeScale.paragraph};
   color: white;
 `;
 
 export const SecondaryButton = styled(Button)`
   background: none;
-  border: 2px solid ${PrimaryBlue};
-  color: ${PrimaryBlue};
+  border: 2px solid ${defaultTheme.primaryColor};
+  color: ${defaultTheme.primaryColor};
 `;
 
 export const TertiaryButton = styled(SecondaryButton)`
