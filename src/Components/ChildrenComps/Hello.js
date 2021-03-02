@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import PrimaryButton, { SecondaryButton, TertiaryButton } from "../Buttons";
 import { defaultTheme, darkTheme } from "../../utils";
+import { SignUpModal } from "../Modal";
 
 function Hello() {
   const [useDarkTheme, setDarkTheme] = useState(false);
@@ -30,6 +31,8 @@ function Hello() {
         <PrimaryButton>Submit</PrimaryButton>
         <SecondaryButton>Submit</SecondaryButton>
         <TertiaryButton>Submit</TertiaryButton>
+
+        <SignUpModal />
       </div>
     </ThemeProvider>
   );
