@@ -7,6 +7,29 @@ const Button = styled.button`
   border-radius: 2px;
   cursor: pointer;
   font-family: "Roboto-Mono", monospace;
+  transition: background-color 0.2s linear, color 0.2s linear;
+
+  &:hover {
+    background-color: ${defaultTheme.primaryColorHover};
+    color: ${defaultTheme.textColorOnPrimary};
+  }
+
+  &:focus {
+    outline: 3px solid ${defaultTheme.primaryColorHover};
+  }
+
+  &:active {
+    background-color: ${defaultTheme.primaryColorActive};
+    border-color: ${defaultTheme.primaryColorActive};
+    color: ${defaultTheme.textColorOnPrimary};
+  }
+
+  &:disabled {
+    background: ${defaultTheme.disabled};
+    color: ${defaultTheme.textOnDisabled};
+    cursor: not-allowed;
+    border: none;
+  }
 `;
 
 const PrimaryButton = styled(Button)`
